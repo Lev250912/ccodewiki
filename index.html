@@ -37,6 +37,11 @@
             margin-bottom: 1rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: block;
+        }
+        
+        .logo:not([src]), .logo[src=""] {
+            display: none;
         }
 
         .title {
@@ -64,8 +69,24 @@
 </head>
 <body>
     <div class="header">
-        <img src="logo.png" alt="Ccode.wiki Logo" class="logo">
+        <img src="./logo.png" alt="Ccode.wiki Logo" class="logo">
         <h1 class="title">Ccode.wiki</h1>
     </div>
+    
+    <script>
+        // Проверяем загрузку изображения
+        window.addEventListener('load', function() {
+            const logo = document.querySelector('.logo');
+            
+            logo.addEventListener('error', function() {
+                console.log('Ошибка загрузки логотипа');
+                this.style.display = 'none';
+            });
+            
+            logo.addEventListener('load', function() {
+                console.log('Логотип успешно загружен');
+            });
+        });
+    </script>
 </body>
 </html>
